@@ -70,7 +70,7 @@
 
     <md-content flex id="content">
 
-        <md-grid-list md-cols="7" md-cols="7" md-row-height="fit" fit ng-style="{height: fitheight}" >
+        <md-grid-list id="fit-two" md-cols="7" md-cols="7" md-row-height="fit" fit-to-window="68">
             <md-grid-tile ng-repeat="day in ul.items" style="background: #f5f5f5">
                 <h3 class="md-caption">{{day}}</h3>
             </md-grid-tile>

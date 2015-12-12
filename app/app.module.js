@@ -4,36 +4,34 @@
     angular
         .module('app', ['ngMaterial'])
         .config(config)
-        .directive('fit', fit);
+        .directive('fitToWindow', fitToWindow);
 
     config.$inject = ['$mdThemingProvider'];
+    fitToWindow.$inject = ['$window'];
+
 
     function config($mdThemingProvider) {
-
         $mdThemingProvider.theme('default')
             .primaryPalette('deep-purple')
-            .accentPalette('red');
+            .accentPalette('yellow');
     }
 
-    function fit($window) {
-        return function ($scope) {
-            $scope.initSize = function () {
-                return $scope.fitheight = $window.innerHeight - 50 + 'px';
-            };
-            $scope.initSize();
-            return angular.element($window).bind('resize', function () {
-                $scope.initSize();
-                return $scope.$apply();
-            });
-        };
-    }
-
-    // todo spróbować ustawić wysokość w dyrektywie
     function fitToWindow($window) {
+
+        function link(scope, element, attrs) {
+            function initSize() {
+                var fitheight = ($window.innerHeight) - attrs.fitToWindow + 'px';
+                element.css('height', fitheight);
+            };
+            initSize();
+            angular.element($window).bind('resize', function () {
+                initSize();
+                scope.$apply();
+            });
+        }
+
         return {
-            link: function ($scope, $element) {
-                $element.css('height', '600px');
-            }
+            link: link
         }
     }
 
