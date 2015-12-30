@@ -25,6 +25,9 @@
         self.items = [];
         self.selectMenu = selectMenu;
         self.toggleList = toggleUsersList;
+        self.loadFile = loadFile;
+
+
 
         for (var i = 0; i < 49; i++)
             self.items[i] = i;
@@ -38,7 +41,18 @@
             self.toggleList();
         }
 
-
+        function loadFile(){
+            console.log('dzia lam?');
+            var f = document.getElementById('file'),
+                r = new FileReader();
+            console.log('f',f);
+            f.onclick.apply(f);
+            //r.onloadend = function(e){
+            //    var data = e.target.result;
+            //
+            //};
+            //r.readAsArrayBuffer(f);
+        }
 
     }
 
